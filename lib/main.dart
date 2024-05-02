@@ -1,4 +1,4 @@
-import 'package:clone_photo_app/HomeScreen.dart';
+import 'package:clone_photo_app/Main_Screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,6 +17,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const HomeScreen());
+        home: const MainSreen());
   }
 }
