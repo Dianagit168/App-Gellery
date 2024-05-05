@@ -12,7 +12,7 @@ class MonthScreen extends StatelessWidget {
         shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 1,
-          mainAxisExtent: 300,
+          mainAxisExtent: 450,
         ),
         itemCount: 10,
         itemBuilder: (context, index) {
@@ -21,12 +21,32 @@ class MonthScreen extends StatelessWidget {
             children: [
               const Padding(
                 padding: EdgeInsets.only(left: 15, bottom: 8),
-                child: Text(
-                  'May 2024',
-                  style: TextStyle(
-                    fontSize: 19,
-                    fontWeight: FontWeight.bold,
-                  ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'May',
+                      style: TextStyle(
+                        fontSize: 23,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 4),
+                      child: Text(
+                        '2024',
+                        style: TextStyle(
+                            fontSize: 23,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey),
+                      ),
+                    ),
+                    Icon(
+                      LucideIcons.chevronRight,
+                      size: 30,
+                      color: Colors.grey,
+                    ),
+                  ],
                 ),
               ),
               Stack(
@@ -40,6 +60,7 @@ class MonthScreen extends StatelessWidget {
                     child: Image.network(
                       'https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcS6HuPXKLP6UfXBrzMz42_2w-8nPjgCVZNmoA2AcNt_KXR8vcMdMra-IijGBznEsxwEFIwzRSRTlRE5kDM',
                       fit: BoxFit.cover,
+                      height: 375,
                     ),
                   ),
                   Positioned(
@@ -56,12 +77,12 @@ class MonthScreen extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          margin: const EdgeInsets.only(left: 200),
+                          margin: const EdgeInsets.only(left: 220),
                           decoration: const BoxDecoration(
-                              color: Color.fromARGB(255, 170, 172, 182),
+                              color: Color.fromARGB(243, 115, 117, 126),
                               shape: BoxShape.circle),
                           child: const Padding(
-                            padding: EdgeInsets.all(4.0),
+                            padding: EdgeInsets.all(6.0),
                             child: Icon(
                               LucideIcons.moreHorizontal,
                               size: 17,

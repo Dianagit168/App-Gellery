@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AllPhoto extends StatelessWidget {
-  const AllPhoto({super.key});
+class AllPhotoScreen extends StatelessWidget {
+  const AllPhotoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

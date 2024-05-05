@@ -1,4 +1,5 @@
-import 'package:clone_photo_app/Main_Screen.dart';
+import 'package:clone_photo_app/screen/gallery_home/gallary_home_screen.dart';
+import 'package:clone_photo_app/screen/gallery_home/gallery_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,11 +13,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        home: const MainSreen());
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const GalleryPage(),
+    );
   }
 }

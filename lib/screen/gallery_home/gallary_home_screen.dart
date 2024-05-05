@@ -1,16 +1,17 @@
-import 'package:clone_photo_app/Screen/ForYouScreen.dart';
-import 'package:clone_photo_app/Screen/LibraryScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
-class MainSreen extends StatefulWidget {
-  const MainSreen({super.key});
+import '../foryou_screen.dart';
+import '../library_screen.dart';
+
+class GalleryHomeSreen extends StatefulWidget {
+  const GalleryHomeSreen({super.key});
 
   @override
-  State<MainSreen> createState() => _MainSreenState();
+  State<GalleryHomeSreen> createState() => _GalleryHomeSreenState();
 }
 
-class _MainSreenState extends State<MainSreen> {
+class _GalleryHomeSreenState extends State<GalleryHomeSreen> {
   int selectedIndex = 0;
 
   List screenList = [
@@ -22,6 +23,7 @@ class _MainSreenState extends State<MainSreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(238, 255, 255, 255),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         actions: [
