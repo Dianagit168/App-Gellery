@@ -1,8 +1,9 @@
+import 'package:clone_photo_app/screen/SubScreen/albums_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
-import '../foryou_screen.dart';
-import '../library_screen.dart';
+import '../SubScreen/foryou_screen.dart';
+import '../SubScreen/library_screen.dart';
 
 class GalleryHomeSreen extends StatefulWidget {
   const GalleryHomeSreen({super.key});
@@ -17,7 +18,7 @@ class _GalleryHomeSreenState extends State<GalleryHomeSreen> {
   List screenList = [
     const LibraryScreen(),
     const ForYouScreen(),
-    const LibraryScreen(),
+    const AlbumsScreen(),
     const ForYouScreen()
   ];
   @override
