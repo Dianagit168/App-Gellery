@@ -1,3 +1,6 @@
+import 'dart:ffi';
+
+import 'package:clone_photo_app/data/albums_cate_data.dart';
 import 'package:clone_photo_app/data/photo_data.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
@@ -64,55 +67,46 @@ class AlbumsScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
                   height: 525,
-                  child: PageView.builder(
-                    controller: PageController(viewportFraction: 0.93),
-                    itemCount: 3,
+                  child: GridView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 12,
+                      mainAxisExtent: 250,
+                    ),
+                    itemCount: albumsCateList.length,
                     itemBuilder: (context, index) {
-                      return Container(
-                        margin: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-                        child: GridView.builder(
-                          physics: const BouncingScrollPhysics(),
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 12,
-                            //childAspectRatio: 5
-                            mainAxisExtent: 250,
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 190,
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(4),
+                              ),
+                              image: DecorationImage(     
+                                fit: BoxFit.cover,
+                                image: NetworkImage(
+                                    albumsCateList[index].thumnail),
+                              ),
+                            ),
                           ),
-                          itemCount: forYouPhoto.length,
-                          itemBuilder: (context, index) {
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  height: 190,
-                                  decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(4),
-                                    ),
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: NetworkImage(
-                                          forYouPhoto[index].image),
-                                    ),
-                                  ),
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 8),
-                                  child: Text(
-                                    'Albums Name',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                const Text('1000')
-                              ],
-                            );
-                          },
-                        ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8),
+                            child: Text(
+                              albumsCateList[index].cateName,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Text(albumsCateList[index].qty)
+                        ],
                       );
                     },
                   ),
@@ -136,13 +130,13 @@ class AlbumsScreen extends StatelessWidget {
               ),
             ),
             Container(
-              // r
-              height: 250,
+              padding: const EdgeInsets.only(top: 8),
+              height: 260,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 physics: const BouncingScrollPhysics(),
                 //  shrinkWrap: true,
-                itemCount: 2,
+                itemCount: forYouPhoto.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -163,7 +157,7 @@ class AlbumsScreen extends StatelessWidget {
                       const Padding(
                         padding: EdgeInsets.symmetric(vertical: 8),
                         child: Text(
-                          'Albums Name',
+                          'People and place',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -173,9 +167,106 @@ class AlbumsScreen extends StatelessWidget {
                 },
               ),
             ),
+            const Divider(
+              height: 20,
+              thickness: 0.3,
+              indent: 20,
+              color: Colors.grey,
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                'Media Types',
+                style: TextStyle(
+                  fontSize: 23,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            ListView.builder(
+              physics: const BouncingScrollPhysics(),
+              itemCount: 10,
+              shrinkWrap: true,
+              itemBuilder: (BuildContext context, int index) {
+                return mediaItem(context, 'Videos');
+              },
+            ),
+            const Divider(
+              height: 20,
+              thickness: 0.3,
+              indent: 20,
+              color: Colors.grey,
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                'Utilities  ',
+                style: TextStyle(
+                  fontSize: 23,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            ListView.builder(
+              physics: const BouncingScrollPhysics(),
+              itemCount: 3,
+              shrinkWrap: true,
+              itemBuilder: (BuildContext context, int index) {
+                return mediaItem(context, 'Videos');
+              },
+            )
           ],
         ),
       ),
     );
   }
+}
+
+Widget mediaItem(BuildContext context, String name) {
+  return Column(
+    children: [
+      ListTile(
+        leading: const Icon(
+          LucideIcons.video,
+          size: 38,
+          color: Colors.blueAccent,
+        ),
+        title: Text(
+          name,
+          style: const TextStyle(
+              fontSize: 24,
+              color: Colors.blueAccent,
+              fontWeight: FontWeight.w400),
+        ),
+        contentPadding: const EdgeInsets.only(left: 20, right: 10),
+        trailing: const SizedBox(
+          height: 30,
+          width: 100,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text(
+                '123',
+                style: TextStyle(
+                  color: Colors.blueGrey,
+                  fontSize: 18,
+                ),
+              ),
+              Icon(
+                LucideIcons.chevronRight,
+                size: 24,
+                color: Colors.grey,
+              ),
+            ],
+          ),
+        ),
+      ),
+      const Divider(
+        height: 10,
+        thickness: 0.3,
+        indent: 80,
+        color: Colors.grey,
+      ),
+    ],
+  );
 }

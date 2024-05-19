@@ -1,11 +1,7 @@
 import 'package:clone_photo_app/screen/all_photo/all_photo_page.dart';
-import 'package:clone_photo_app/screen/all_photo/all_photo_screen.dart';
 import 'package:clone_photo_app/screen/month/month_page.dart';
-import 'package:clone_photo_app/screen/month/month_screen.dart';
 import 'package:clone_photo_app/screen/years/years_page.dart';
-import 'package:clone_photo_app/screen/years/years_screen.dart';
 import 'package:clone_photo_app/screen/days/day_page.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class LibraryScreen extends StatefulWidget {

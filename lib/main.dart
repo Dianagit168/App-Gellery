@@ -1,4 +1,3 @@
-import 'package:clone_photo_app/screen/gallery_home/gallary_home_screen.dart';
 import 'package:clone_photo_app/screen/gallery_home/gallery_page.dart';
 import 'package:flutter/material.dart';
 
