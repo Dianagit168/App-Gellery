@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:clone_photo_app/data/albums_cate_data.dart';
 import 'package:clone_photo_app/data/photo_data.dart';
+import 'package:clone_photo_app/model/albums_cate_model.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
@@ -10,6 +11,7 @@ class AlbumsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //print(mediaAndTypeData.length);
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: SafeArea(
@@ -17,14 +19,15 @@ class AlbumsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             IconButton(
-                onPressed: () {
-                  (debugPrint('Press +'));
-                },
-                icon: const Icon(
-                  LucideIcons.plus,
-                  size: 28,
-                  color: Colors.blue,
-                )),
+              onPressed: () {
+                (debugPrint('Press +'));
+              },
+              icon: const Icon(
+                LucideIcons.plus,
+                size: 28,
+                color: Colors.blue,
+              ),
+            ),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Text(
@@ -90,7 +93,7 @@ class AlbumsScreen extends StatelessWidget {
                               borderRadius: const BorderRadius.all(
                                 Radius.circular(4),
                               ),
-                              image: DecorationImage(     
+                              image: DecorationImage(
                                 fit: BoxFit.cover,
                                 image: NetworkImage(
                                     albumsCateList[index].thumnail),
@@ -130,38 +133,38 @@ class AlbumsScreen extends StatelessWidget {
               ),
             ),
             Container(
-              padding: const EdgeInsets.only(top: 8),
+              padding: const EdgeInsets.only(top: 8, left: 20, right: 20),
               height: 260,
+              margin: EdgeInsets.zero,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 physics: const BouncingScrollPhysics(),
-                //  shrinkWrap: true,
-                itemCount: forYouPhoto.length,
+                itemCount: peopleAnPlace.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
                         height: 190,
-                        width: MediaQuery.of(context).size.width / 2,
+                        width: MediaQuery.of(context).size.width / 2.2,
                         decoration: BoxDecoration(
                           borderRadius: const BorderRadius.all(
                             Radius.circular(4),
                           ),
                           image: DecorationImage(
                             fit: BoxFit.cover,
-                            image: NetworkImage(forYouPhoto[index].image),
+                            image: NetworkImage(peopleAnPlace[index].image),
                           ),
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 8),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
                         child: Text(
-                          'People and place',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          peopleAnPlace[index].title,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
-                      const Text('1000')
+                      Text(peopleAnPlace[index].subTitle)
                     ],
                   );
                 },
@@ -185,10 +188,16 @@ class AlbumsScreen extends StatelessWidget {
             ),
             ListView.builder(
               physics: const BouncingScrollPhysics(),
-              itemCount: 10,
+              itemCount: mediaAndTypeData.length,
               shrinkWrap: true,
               itemBuilder: (BuildContext context, int index) {
-                return mediaItem(context, 'Videos');
+                return mediaItem(
+                    context,
+                    mediaAndTypeData[index].title,
+                    mediaAndTypeData[index].leadingIcon,
+                    mediaAndTypeData[index].qty,
+                    index);
+                // mediaAndTypeData.length);
               },
             ),
             const Divider(
@@ -209,12 +218,18 @@ class AlbumsScreen extends StatelessWidget {
             ),
             ListView.builder(
               physics: const BouncingScrollPhysics(),
-              itemCount: 3,
+              itemCount: utilitiesData.length,
               shrinkWrap: true,
               itemBuilder: (BuildContext context, int index) {
-                return mediaItem(context, 'Videos');
+                return mediaItem(
+                    context,
+                    utilitiesData[index].title,
+                    utilitiesData[index].leadingIcon,
+                    utilitiesData[index].qty,
+                    index);
+                // mediaAndTypeData.length);
               },
-            )
+            ),
           ],
         ),
       ),
@@ -222,37 +237,38 @@ class AlbumsScreen extends StatelessWidget {
   }
 }
 
-Widget mediaItem(BuildContext context, String name) {
+Widget mediaItem(BuildContext context, String name, IconData leadingIcon,
+    num qty, int lastIndex) {
   return Column(
     children: [
       ListTile(
-        leading: const Icon(
-          LucideIcons.video,
-          size: 38,
+        leading: Icon(
+          leadingIcon,
+          size: 32,
           color: Colors.blueAccent,
         ),
         title: Text(
           name,
           style: const TextStyle(
-              fontSize: 24,
-              color: Colors.blueAccent,
-              fontWeight: FontWeight.w400),
+            fontSize: 22,
+            color: Colors.blueAccent,
+          ),
         ),
         contentPadding: const EdgeInsets.only(left: 20, right: 10),
-        trailing: const SizedBox(
+        trailing: SizedBox(
           height: 30,
           width: 100,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
-                '123',
-                style: TextStyle(
+                qty.toString(),
+                style: const TextStyle(
                   color: Colors.blueGrey,
                   fontSize: 18,
                 ),
               ),
-              Icon(
+              const Icon(
                 LucideIcons.chevronRight,
                 size: 24,
                 color: Colors.grey,
@@ -261,12 +277,14 @@ Widget mediaItem(BuildContext context, String name) {
           ),
         ),
       ),
-      const Divider(
-        height: 10,
-        thickness: 0.3,
-        indent: 80,
-        color: Colors.grey,
-      ),
+      lastIndex == 9
+          ? const Text('')
+          : const Divider(
+              height: 10,
+              thickness: 0.3,
+              indent: 80,
+              color: Colors.grey,
+            )
     ],
   );
 }

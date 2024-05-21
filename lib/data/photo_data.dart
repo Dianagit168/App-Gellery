@@ -27,3 +27,22 @@ List<PhotoModel> forYouPhoto = [
     mainRow: MainAxisAlignment.end,
   ),
 ];
+
+List<PhotoModel> peopleAnPlace = [
+  PhotoModel(
+    image:
+        'https://venngage-wordpress.s3.amazonaws.com/uploads/2022/09/meme_doge_dog.png',
+    title: 'People',
+    subTitle: '14',
+    mainColum: MainAxisAlignment.start,
+    mainRow: MainAxisAlignment.center,
+  ),
+  PhotoModel(
+    image:
+        'https://cdn.britannica.com/39/4039-050-FA851D93/Cambodia-map-boundaries-cities-locator.jpg',
+    title: 'Place',
+    subTitle: '77',
+    mainColum: MainAxisAlignment.spaceBetween,
+    mainRow: MainAxisAlignment.center,
+  ),
+];
