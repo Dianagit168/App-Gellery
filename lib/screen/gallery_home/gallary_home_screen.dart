@@ -1,4 +1,5 @@
 import 'package:clone_photo_app/screen/SubScreen/albums_screen.dart';
+import 'package:clone_photo_app/screen/SubScreen/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
@@ -19,7 +20,7 @@ class _GalleryHomeSreenState extends State<GalleryHomeSreen> {
     const LibraryScreen(),
     const ForYouScreen(),
     const AlbumsScreen(),
-    const ForYouScreen()
+    const SeachScreen(),
   ];
   @override
   Widget build(BuildContext context) {

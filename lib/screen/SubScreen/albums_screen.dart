@@ -1,8 +1,5 @@
-import 'dart:ffi';
-
 import 'package:clone_photo_app/data/albums_cate_data.dart';
 import 'package:clone_photo_app/data/photo_data.dart';
-import 'package:clone_photo_app/model/albums_cate_model.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
