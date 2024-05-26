@@ -3,6 +3,7 @@ import 'package:clone_photo_app/screen/month/month_page.dart';
 import 'package:clone_photo_app/screen/years/years_page.dart';
 import 'package:clone_photo_app/screen/days/day_page.dart';
 import 'package:flutter/material.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 
 class LibraryScreen extends StatefulWidget {
   const LibraryScreen({super.key});
