@@ -1,3 +1,4 @@
+import 'package:clone_photo_app/widgets/appbar_trans.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
@@ -6,98 +7,126 @@ class MonthScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 10, right: 10),
-      child: GridView.builder(
-        shrinkWrap: true,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 1,
-          mainAxisExtent: 450,
-        ),
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: appBarTrans(false),
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: Column(
             children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 15, bottom: 8),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'May',
-                      style: TextStyle(
-                        fontSize: 23,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 4),
-                      child: Text(
-                        '2024',
-                        style: TextStyle(
-                            fontSize: 23,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                      ),
-                    ),
-                    Icon(
-                      LucideIcons.chevronRight,
-                      size: 30,
-                      color: Colors.grey,
-                    ),
-                  ],
+              GridView.builder(
+                physics: const BouncingScrollPhysics(),
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 1,
+                  mainAxisExtent: 450,
                 ),
-              ),
-              Stack(
-                children: [
-                  Card(
-                    elevation: 15,
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Image.network(
-                      'https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcS6HuPXKLP6UfXBrzMz42_2w-8nPjgCVZNmoA2AcNt_KXR8vcMdMra-IijGBznEsxwEFIwzRSRTlRE5kDM',
-                      fit: BoxFit.cover,
-                      height: 375,
-                    ),
-                  ),
-                  Positioned(
-                    top: 18,
-                    left: 22,
-                    child: Row(
-                      children: [
-                        const Text(
-                          'New York',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 19,
-                            fontWeight: FontWeight.bold,
-                          ),
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(left: 15, bottom: 8),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'May',
+                              style: TextStyle(
+                                fontSize: 23,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 4),
+                              child: Text(
+                                '2024',
+                                style: TextStyle(
+                                    fontSize: 23,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.grey),
+                              ),
+                            ),
+                            Icon(
+                              LucideIcons.chevronRight,
+                              size: 30,
+                              color: Colors.grey,
+                            ),
+                          ],
                         ),
-                        Container(
-                          margin: const EdgeInsets.only(left: 220),
-                          decoration: const BoxDecoration(
-                              color: Color.fromARGB(243, 115, 117, 126),
-                              shape: BoxShape.circle),
-                          child: const Padding(
-                            padding: EdgeInsets.all(6.0),
-                            child: Icon(
-                              LucideIcons.moreHorizontal,
-                              size: 17,
-                              color: Colors.white,
+                      ),
+                      Stack(
+                        children: [
+                          Card(
+                            elevation: 15,
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Image.network(
+                              'https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcS6HuPXKLP6UfXBrzMz42_2w-8nPjgCVZNmoA2AcNt_KXR8vcMdMra-IijGBznEsxwEFIwzRSRTlRE5kDM',
+                              fit: BoxFit.cover,
+                              height: 375,
                             ),
                           ),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
+                          Positioned(
+                            top: 18,
+                            left: 22,
+                            child: Row(
+                              children: [
+                                const Text(
+                                  'New York',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Container(
+                                  margin: const EdgeInsets.only(left: 220),
+                                  decoration: const BoxDecoration(
+                                      color: Color.fromARGB(243, 115, 117, 126),
+                                      shape: BoxShape.circle),
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(6.0),
+                                    child: Icon(
+                                      LucideIcons.moreHorizontal,
+                                      size: 17,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  );
+                },
               ),
+              const Padding(
+                padding: EdgeInsets.only(top: 10),
+                child: Text(
+                  'Curation Complete',
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(bottom: 48, left: 20, right: 20),
+                child: Text(
+                  'Photo and video are curated when your device is connected to power',
+                  style: TextStyle(fontWeight: FontWeight.w600, height: 1.2),
+                  textAlign: TextAlign.center,
+                ),
+              )
             ],
-          );
-        },
+          ),
+        ),
       ),
     );
   }
