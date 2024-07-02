@@ -15,56 +15,56 @@ class LibraryScreen extends StatefulWidget {
 class _LibraryScreenState extends State<LibraryScreen> {
   @override
   Widget build(BuildContext context) {
-    return tapBar(context);
-  }
-}
+    return SizedBox(
+      height: MediaQuery.of(context).size.height,
+      child: DefaultTabController(
+        length: 4,
+        child: Column(
+          children: [
+            const Expanded(
+              child: TabBarView(
+                children: [
+                  YearsPage(),
+                  MonthPage(),
+                  DayPage(),
+                  AllPhotoPage(),
+                ],
+              ),
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 40,
+           
+              margin: const EdgeInsets.only(bottom: 8, left: 8, right: 8),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(65, 130, 131, 135),
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: TabBar(
+                indicatorSize: TabBarIndicatorSize.tab,
+                indicator: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color: const Color.fromARGB(206, 164, 165, 167),
+                ),
+                
+                labelStyle: const TextStyle(fontWeight: FontWeight.bold),
+                unselectedLabelColor: const Color.fromARGB(255, 130, 131, 135),
+                labelColor: Colors.white,
+                padding: const EdgeInsets.all(4),
+                dividerColor: Colors.transparent,
 
-Widget tapBar(BuildContext context) {
-  return SizedBox(
-    height: MediaQuery.of(context).size.height,
-    child: DefaultTabController(
-      length: 4,
-      child: Column(
-        children: [
-          const Expanded(
-            child: TabBarView(
-              children: [
-                YearsPage(),
-                MonthPage(),
-                DayPage(),
-                AllPhotoPage(),
-              ],
+                labelPadding:  EdgeInsets.zero,
+                tabs: const [
+                  Tab(child: Text('Years')),
+                  Tab(child: Text('Months')),
+                  Tab(child: Text('Days')),
+                  Tab(child: Text('All Photos')),
+                ],
+              ),
             ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(bottom: 10),
-            height: 35,
-            decoration: BoxDecoration(
-              color: const Color.fromARGB(65, 130, 131, 135),
-              borderRadius: BorderRadius.circular(30),
-            ),
-            width: MediaQuery.of(context).size.width,
-            child: const TabBar(
-              indicatorSize: TabBarIndicatorSize.label,
-              // indicator: BoxDecoration(
-              //   borderRadius: BorderRadius.circular(30),
-              //   color: const Color.fromARGB(206, 164, 165, 167),
-              // ),
-              // labelStyle: const TextStyle(fontWeight: FontWeight.bold),
-              // unselectedLabelColor: const Color.fromARGB(255, 130, 131, 135),
-              // labelColor: Colors.white,
-              padding: EdgeInsets.zero,
-              // labelPadding: EdgeInsets.symmetric(horizontal: 8),
-              tabs: [
-                Tab(child: Text('Years')),
-                Tab(child: Text('Months')),
-                Tab(child: Text('Days')),
-                Tab(child: Text('All Photos')),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
 }
